@@ -1,365 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProTech Teknik Servis | FPV Drone Bilgisayar Tamiri</title>
-    
-    <!-- [RAPOR DÜZELTMESİ] Meta Description Uzatıldı (SEO Skoru İçin) -->
-    <meta name="description" content="ProTech Teknik Servis Alanya'da FPV Drone tamiri, anakart onarımı, 3D baskı hizmetleri ve bilgisayar tamiri sunar. 7/24 hızlı, güvenilir ve profesyonel teknik destek arıyorsanız hemen randevu alın.">
-    
-    <!-- [RAPOR DÜZELTMESİ] Eksik Canonical URL Eklendi -->
-    <link rel="canonical" href="https://www.protechteknik.com/">
-    
-    <!-- [RAPOR DÜZELTMESİ] Eksik Favicon Tanımlandı -->
-    <link rel="icon" type="image/png" href="favicon.png">
-
-    <!-- [RAPOR DÜZELTMESİ] Eksik Open Graph Sosyal Medya Etiketleri Eklendi -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.protechteknik.com/">
-    <meta property="og:title" content="ProTech Teknik Servis | FPV Drone Bilgisayar Tamiri">
-    <meta property="og:description" content="Alanya'da FPV Drone, bilgisayar tamiri ve 3D baskı hizmeti. Aynı gün teslimat ve 7/24 acil servis!">
-    <meta property="og:image" content="https://raw.githubusercontent.com/protechteknik/protech/main/Protech%20Logo.jpg">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* [RAPOR DÜZELTMESİ] Mobil yatay kaymayı engelleme ve dokunma iyileştirmesi */
-        html, body {
-            overflow-x: hidden;
-            touch-action: manipulation;
-        }
-
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            line-height: 1.6; color: #1e293b; /* Kontrast iyileştirildi */
-            background-color: #ffffff;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Header ve CLS Kayma Engelleme */
-        .header {
-            position: fixed; top: 0; width: 100%; height: 70px;
-            background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); 
-            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.1); display: flex; align-items: center;
-        }
-        .nav-container { 
-            width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; 
-            display: flex; justify-content: space-between; align-items: center; 
-        }
-        
-        /* Siyah Çerçeveleri Yok Eden Sihirli Logo Alanı */
-        .logo-link { 
-            display: flex; 
-            align-items: center; 
-            text-decoration: none; 
-            min-height: 50px;
-            height: 55px;
-        }
-        .logo-img { 
-            height: 55px; 
-            width: auto; 
-            object-fit: contain;
-            display: block;
-            mix-blend-mode: multiply; /* Siyahlığı transparan yapar */
-        }
-
-        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
-        
-        /* [RAPOR DÜZELTMESİ] Link ve Butonlara Mobil Dokunma Standardı (min 44px) ve Renk Kontrastı Uyarlaması */
-        .nav-menu a, .hamburger {
-            color: #0f172a; /* Yüksek Kontrast */
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: color 0.3s;
-            min-height: 44px;
-            min-width: 44px;
-            display: inline-flex;
-            align-items: center;
-        }
-        .nav-menu a:hover { color: #1d4ed8; }
-
-        /* [RAPOR DÜZELTMESİ] Belirgin Belirtilen Eksik CTA (Aksiyon) Butonu */
-        .nav-cta {
-            background: #1d4ed8; 
-            color: #ffffff !important; 
-            padding: 10px 24px !important; 
-            border-radius: 50px; 
-            box-shadow: 0 4px 15px rgba(29,78,216,0.3);
-            transition: all 0.3s !important;
-        }
-        .nav-cta:hover {
-            background: #1e40af;
-            transform: translateY(-1px);
-        }
-
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; justify-content: center; }
-        .hamburger span { width: 25px; height: 3px; background: #0f172a; transition: 0.3s; }
-        
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center; 
-            justify-content: center; text-align: center; color: white; padding: 140px 20px 80px;
-        }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
-        .highlight { background: linear-gradient(45deg, #fef08a, #fde047); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero p { font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 600px; }
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-        
-        /* [RAPOR DÜZELTMESİ] Buton Boyutları Standartlaştırıldı (44px+) */
-        .btn { 
-            padding: 15px 32px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 700; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 8px; 
-            transition: all 0.3s; 
-            border: none; 
-            cursor: pointer; 
-            font-size: 1rem;
-            min-height: 48px;
-            min-width: 44px;
-        }
-        .btn-primary { background: #fde047; color: #0f172a; box-shadow: 0 10px 30px rgba(253,224,71,0.3); }
-        .btn-primary:hover { transform: translateY(-3px); background: #facc15; }
-        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
-        .btn-secondary:hover { background: white; color: #4f46e5; }
-        
-        /* Services */
-        .services { padding: 80px 0; background: #f8fafc; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #0f172a; font-weight: 800; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .service-card { 
-            background: white; padding: 2.5rem 2rem; border-radius: 20px; text-align: center; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: all 0.3s; border-top: 4px solid #1d4ed8;
-        }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-        .service-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #1d4ed8, #1e40af); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: white; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #0f172a; }
-        .service-card ul { list-style: none; margin-bottom: 1.5rem; text-align: left; }
-        .service-card li { padding: 0.5rem 0; position: relative; padding-left: 25px; color: #334155; }
-        .service-card li::before { content: "✓"; position: absolute; left: 0; color: #059669; font-weight: bold; }
-        .price { font-size: 1.25rem; font-weight: 700; color: #059669; display: block; }
-        
-        /* Contact */
-        .contact { padding: 80px 0; background: #ffffff; }
-        .contact-form { max-width: 600px; margin: 0 auto; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-        .form-row.full { grid-template-columns: 1fr; }
-        
-        /* [RAPOR DÜZELTMESİ] Form Girdileri Kontrast Seviyeleri Yükseltildi */
-        .contact-form input, .contact-form select, .contact-form textarea { 
-            width: 100%; padding: 18px 20px; border: 2px solid #cbd5e1; border-radius: 12px; 
-            font-size: 1rem; color: #0f172a; transition: all 0.3s; font-family: inherit; 
-            background: #f8fafc;
-        }
-        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { 
-            outline: none; border-color: #1d4ed8; background: white; box-shadow: 0 0 0 3px rgba(29,78,216,0.1); 
-        }
-        
-        /* Footer */
-        .footer { background: #0f172a; color: white; padding: 3rem 0 1.5rem; text-align: center; }
-        .footer-content p { margin-bottom: 0.6rem; opacity: 0.9; font-size: 1.05rem; }
-        .footer-bottom { border-top: 1px solid #1e293b; padding-top: 1.5rem; opacity: 0.7; margin-top: 2rem; }
-        
-        /* [RAPOR DÜZELTMESİ] Sabit WhatsApp Alanı Erişilebilir Yapıldı (44px+) */
-        .whatsapp-float {
-            position: fixed; width: 65px; height: 65px; bottom: 40px; right: 40px;
-            background: #25d366; color: #FFF; border-radius: 50px; text-align: center;
-            font-size: 36px; box-shadow: 2px 4px 15px rgba(0,0,0,0.2); z-index: 1000;
-            display: flex; align-items: center; justify-content: center; text-decoration: none;
-            animation: pulse 2s infinite; transition: transform 0.3s;
-            min-width: 44px; min-height: 44px;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { 
-                position: fixed; left: -100%; top: 70px; flex-direction: column; background: white; 
-                width: 100%; text-align: center; padding: 2rem 0; box-shadow: 0 10px 27px rgba(0,0,0,0.1); 
-                transition: left 0.3s; gap: 1.5rem;
-            }
-            .nav-menu.active { left: 0; }
-            .nav-menu a { width: 100%; justify-content: center; }
-            .nav-cta { border-radius: 0; width: 80% !important; margin: 0 auto; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-buttons { flex-direction: column; align-items: center; width: 100%; }
-            .btn { width: 100%; max-width: 300px; justify-content: center; }
-            .form-row { grid-template-columns: 1fr; gap: 1rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .whatsapp-float { width: 60px; height: 60px; font-size: 30px; bottom: 20px; right: 20px; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ProTech; markalar için yüksek performanslı web siteleri, web uygulamaları ve dijital ürünler tasarlar ve geliştirir." />
+  <meta name="theme-color" content="#090d16" />
+  <title>ProTech — Dijitalde iz bırakın.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+  <div class="page-noise" aria-hidden="true"></div>
 
-    <!-- [RAPOR DÜZELTMESİ] Eksik Skip Navigasyon Linki Eklendi (Klavye İle Gezen Engelli Dostu) -->
-    <a href="#anasayfa" style="position:absolute; top:-100px; left:0; background:#1d4ed8; color:white; padding:10px; z-index:9999; transition:top 0.2s; text-decoration:none; font-weight:bold;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Ana İçeriğe Atla</a>
+  <header class="site-header" data-header>
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="ProTech ana sayfa">
+        <span class="brand-mark"><span></span></span>
+        <span>Pro<span>Tech</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Ana navigasyon">
+        <a href="#services">Hizmetler</a>
+        <a href="#work">Portfolyo</a>
+        <a href="#process">Süreç</a>
+        <a href="#pricing">Fiyatlandırma</a>
+        <a href="#faq">SSS</a>
+      </nav>
+      <a class="button button-small button-blue nav-cta" href="#contact">Proje başlat <span>↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" data-menu-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobil navigasyon" data-mobile-nav>
+      <a href="#services">Hizmetler</a><a href="#work">Portfolyo</a><a href="#process">Süreç</a><a href="#pricing">Fiyatlandırma</a><a href="#faq">SSS</a><a href="#contact">Teklif al ↗</a>
+    </nav>
+  </header>
 
-    <header class="header">
-        <nav class="nav-container">
-            <!-- Çift Güvenceli Kusursuz Şeffaf Logo -->
-            <a href="#anasayfa" class="logo-link" aria-label="ProTech Ana Sayfa">
-                <img src="Protech Logo.jpg" alt="ProTech Teknik Logo" class="logo-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/protechteknik/protech/main/Protech%20Logo.jpg';">
-            </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#anasayfa">🏠 Ana Sayfa</a></li>
-                <li><a href="#hizmetler">🔧 Hizmetler</a></li>
-                <li><a href="#iletisim">📞 İletişim</a></li>
-                <!-- [RAPOR DÜZELTMESİ] Belirgin Belirtilen CTA Butonu Menüye Entegre Edildi -->
-                <li><a href="#iletisim" class="nav-cta">Hemen Randevu Al</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" role="button" tabindex="0">
-                <span></span><span></span><span></span>
-            </div>
-        </nav>
-    </header>
-
-    <section id="anasayfa" class="hero">
-        <div class="container">
-            <h1>Her Cihazınıza <span class="highlight">Hızlı & Güvenilir</span> Servis</h1>
-            <p>📱 3D Baskı 💻 Bilgisayar 📲 Drone tamiri uzmanları. Aynı gün teslimat garantisi!</p>
-            <div class="hero-buttons">
-                <a href="#iletisim" class="btn btn-primary">Randevu Al ➡️</a>
-                <a href="#hizmetler" class="btn btn-secondary">Hizmetleri Gör</a>
-            </div>
+  <main id="main">
+    <section class="hero section" id="top">
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="status-dot"></span> Dijital ürün stüdyosu <span class="eyebrow-line"></span> 2026</div>
+          <h1>Fikrinizi <em>ekrana</em><br />taşıyoruz.</h1>
+          <p class="hero-lead">Modern tasarım, yıldırım hızında performans ve ölçülebilir sonuçlar. Markanızın dijitaldeki en güçlü versiyonunu birlikte kuralım.</p>
+          <div class="hero-actions">
+            <a class="button button-blue" href="#contact">Projenizi anlatın <span>↗</span></a>
+            <a class="text-link" href="#work">Çalışmaları keşfet <span>↓</span></a>
+          </div>
+          <div class="hero-proof"><span class="proof-avatars"><i>EK</i><i>NY</i><i>+8</i></span><span>Geleceğe hazır <strong>12+ marka</strong></span></div>
         </div>
+        <div class="hero-visual reveal reveal-delay" aria-label="ProTech dijital ürün çalışma alanı">
+          <div class="visual-glow"></div>
+          <div class="dashboard-card">
+            <div class="window-bar"><span></span><span></span><span></span><small>protech / studio</small><b>•••</b></div>
+            <div class="dashboard-content">
+              <div class="dashboard-top"><span>GROWTH / 2026</span><strong>+42.8%</strong></div>
+              <div class="chart"><div class="chart-labels"><span>OCA</span><span>ŞUB</span><span>MAR</span><span>NİS</span><span>MAY</span><span>HAZ</span></div><svg viewBox="0 0 520 190" role="img" aria-label="Büyüme grafiği"><defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#46e6ac" stop-opacity=".28"/><stop offset="1" stop-color="#46e6ac" stop-opacity="0"/></linearGradient></defs><path d="M0 150 C58 148 75 122 115 130 S180 92 220 107 S275 76 315 90 S375 62 408 70 S466 28 520 36 V190 H0Z" fill="url(#area)"/><path d="M0 150 C58 148 75 122 115 130 S180 92 220 107 S275 76 315 90 S375 62 408 70 S466 28 520 36" fill="none" stroke="#62efbb" stroke-width="3"/></svg></div>
+              <div class="dashboard-bottom"><div><span class="mini-icon blue">↗</span><small>Yeni ziyaretçiler</small><strong>24,892</strong></div><div><span class="mini-icon lime">◎</span><small>Dönüşüm oranı</small><strong>8.64%</strong></div></div>
+            </div>
+          </div>
+          <div class="floating-note note-top"><span>●</span> LIVE PREVIEW <b>↗</b></div>
+          <div class="floating-note note-bottom"><span class="spark">✦</span><div><small>CORE WEB VITALS</small><strong>98 <i>/ 100</i></strong></div></div>
+        </div>
+      </div>
+      <div class="container hero-scroll"><span>↓</span><small>Aşağı kaydır</small><span class="scroll-rule"></span></div>
     </section>
 
-    <section id="hizmetler" class="services">
-        <div class="container">
-            <h2 class="section-title">Hizmetlerimiz</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>3D Baskı Hizmeti</h3>
-                    <ul>
-                        <li>ABS Baskı</li>
-                        <li>PLA Baskı</li>
-                        <li>PETG Baskı</li>
-                    </ul>
-                    <span class="price">Başlangıç: 299₺</span>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Bilgisayar Tamiri</h3>
-                    <ul>
-                        <li>Format & Windows Yükleme</li>
-                        <li>Donanım Arızası</li>
-                        <li>Yazılım Sorunları</li>
-                        <li>Ekran Kartı Değişimi</li>
-                    </ul>
-                    <span class="price">Başlangıç: 399₺</span>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📲</div>
-                    <h3>Drone Tamiri</h3>
-                    <ul>
-                        <li>Motor Değişimi</li>
-                        <li>Frame Sorunları</li>
-                        <li>ESC Problemleri</li>
-                        <li>FC Değişimi</li>
-                    </ul>
-                    <span class="price">Başlangıç: 249₺</span>
-                </div>
-            </div>
-        </div>
+    <section class="marquee-band" aria-label="Uzmanlık alanları"><div class="marquee-track"><span>WEB DESIGN</span><i>✦</i><span>DEVELOPMENT</span><i>✦</i><span>DIGITAL GROWTH</span><i>✦</i><span>WEB DESIGN</span><i>✦</i><span>DEVELOPMENT</span><i>✦</i><span>DIGITAL GROWTH</span><i>✦</i></div></section>
+
+    <section class="section section-pad" id="services">
+      <div class="container"><div class="section-head reveal"><div><div class="eyebrow">01 / Ne yapıyoruz?</div><h2>Dijitalde iyi<br /><em>görünmek yetmez.</em></h2></div><p>İnsanların hatırlayacağı, iş hedeflerinize hizmet eden ve her cihazda kusursuz çalışan dijital deneyimler tasarlıyoruz.</p></div>
+        <div class="service-grid"><article class="service-card service-feature reveal"><div class="service-number">01</div><div class="service-icon icon-grid">✦</div><h3>Web tasarım<br />&amp; UI/UX</h3><p>Markanıza özel, ziyaretçiyi müşteriye dönüştüren arayüzler.</p><a href="#contact" class="card-link">Detayları konuşalım <span>↗</span></a></article><article class="service-card reveal"><div class="service-number">02</div><div class="service-icon">⌘</div><h3>Web geliştirme<br />&amp; yazılım</h3><p>Ölçeklenebilir, güvenli ve yüksek performanslı web uygulamaları.</p><a href="#contact" class="card-link">Detayları konuşalım <span>↗</span></a></article><article class="service-card reveal"><div class="service-number">03</div><div class="service-icon">◒</div><h3>SEO &amp; performans<br />optimizasyonu</h3><p>Arama sonuçlarında yükselen, hızlı açılan ve ölçülebilen sistemler.</p><a href="#contact" class="card-link">Detayları konuşalım <span>↗</span></a></article></div>
+      </div>
     </section>
 
-    <section id="iletisim" class="contact">
-        <div class="container">
-            <h2 class="section-title">Hemen Randevu Alın</h2>
-            <form class="contact-form" id="contactForm">
-                <div class="form-row">
-                    <!-- [RAPOR DÜZELTMESİ] 3 Form Alanına Eksik Etiketler (aria-label) Atandı -->
-                    <input type="text" id="name" placeholder="👤 Ad Soyad *" aria-label="Adınız Soyadınız" required>
-                    <input type="tel" id="phone" placeholder="📞 Telefon *" aria-label="Telefon Numaranız" required>
-                </div>
-                <div class="form-row">
-                    <input type="email" id="email" placeholder="📧 E-posta (opsiyonel)" aria-label="E-posta Adresiniz">
-                    <select id="service" aria-label="Talep Etmek İstediğiniz Servis Türü" required>
-                        <option value="">🔧 Servis Türü Seçin</option>
-                        <option value="3D Baskı Hizmeti">📱 3D Baskı Hizmeti</option>
-                        <option value="Bilgisayar Tamiri">💻 Bilgisayar Tamiri</option>
-                        <option value="Drone Tamiri">📲 Drone Tamiri</option>
-                    </select>
-                </div>
-                <div class="form-row full">
-                    <textarea id="message" placeholder="🔍 Arıza Tanımı (Örn: FPV Drone motor titremesi var)" aria-label="Arıza veya Talep Detayları" rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 100%; justify-content: center;">📤 Randevu Talebi Gönder</button>
-            </form>
-        </div>
-    </section>
+    <section class="section section-dark section-pad" id="work"><div class="container"><div class="section-head work-head reveal"><div><div class="eyebrow">02 / Seçili işler</div><h2>İşe yarayan<br /><em>işler yapıyoruz.</em></h2></div><div class="filter-tabs" role="group" aria-label="Proje filtreleri"><button class="active" data-filter="all">Tümü</button><button data-filter="web">Web</button><button data-filter="ecommerce">E-ticaret</button><button data-filter="saas">SaaS</button></div></div><div class="project-grid"><article class="project-card project-large reveal" data-category="web"><div class="project-image project-moon"><span class="project-tag">Web deneyimi</span><div class="moon-content"><small>NORTH / STUDIO</small><strong>Make your<br /><i>own</i> space.</strong><span class="moon-arrow">↗</span></div></div><div class="project-meta"><div><h3>North Studio</h3><p>Marka stratejisi · Web tasarım · Geliştirme</p></div><span>2026 ↗</span></div></article><article class="project-card reveal" data-category="ecommerce"><div class="project-image project-bloom"><span class="project-tag">E-ticaret</span><div class="bloom-shape"></div><strong>BLOOM<br /><i>co.</i></strong></div><div class="project-meta"><div><h3>Bloom Co.</h3><p>Shopify · Art direction</p></div><span>2025 ↗</span></div></article><article class="project-card reveal" data-category="saas"><div class="project-image project-flux"><span class="project-tag">SaaS platform</span><div class="flux-ui"><span>FLUX</span><b>01 — 04</b><i></i></div></div><div class="project-meta"><div><h3>Flux Analytics</h3><p>Product design · Dashboard</p></div><span>2025 ↗</span></div></article></div><a class="all-work-link" href="#contact">Tüm projeleri görmek ister misin? <span>↗</span></a></div></section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- [RAPOR DÜZELTMESİ] Kırık Linkler Gerçek İletişim Bağlantılarına Dönüştürüldü -->
-                <p>📞 <a href="tel:+905013242362" style="color: #fde047; text-decoration: none; font-weight: bold;">0501 324 23 62</a> | ✉️ <a href="mailto:info@protech.com.tr" style="color: #fde047; text-decoration: none;">info@protech.com.tr</a></p>
-                <p>📍 Antalya, Alanya | 🕒 7/24 Acil Servis</p>
-            </div>
-            <div class="footer-bottom">
-                <!-- Telif Hakkı Güncel: 2026 -->
-                <p>© 2026 ProTech Teknik Servis - Tüm hakları saklıdır</p>
-            </div>
-        </div>
-    </footer>
+    <section class="section section-pad" id="process"><div class="container process-grid"><div class="process-intro reveal"><div class="eyebrow">03 / Nasıl çalışıyoruz?</div><h2>Netlikten<br /><em>sonuç doğar.</em></h2><p>İyi bir dijital proje; güzel görünen değil, doğru soruyu doğru zamanda soran projedir.</p><a class="text-link" href="#contact">Birlikte başlayalım <span>↗</span></a></div><div class="steps"><article class="step active reveal"><span>01</span><div><h3>Keşif &amp; strateji</h3><p>İhtiyaçlarınızı, kullanıcılarınızı ve büyüme hedeflerinizi birlikte netleştiririz.</p></div><b>+</b></article><article class="step reveal"><span>02</span><div><h3>Tasarım &amp; prototip</h3><p>Figma üzerinde markanıza özel akışları ve arayüz sistemini oluştururuz.</p></div><b>+</b></article><article class="step reveal"><span>03</span><div><h3>Kodlama &amp; geliştirme</h3><p>Hızlı, güvenli ve uzun ömürlü bir altyapıyla ürünü hayata geçiririz.</p></div><b>+</b></article><article class="step reveal"><span>04</span><div><h3>Test &amp; canlıya alma</h3><p>Her ekranda test eder, SEO'yu yapılandırır ve yayına alırız.</p></div><b>+</b></article></div></div></section>
 
-    <!-- WhatsApp Sabit Butonu -->
-    <a href="https://wa.me/905013242362?text=Merhaba!%20ProTech%20Teknik%20Servis%20sitesinden%20geliyorum.%0A%0ARandevu%20almak%20istiyorum.%20" 
-       class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp üzerinden bizimle hızlıca iletişime geçin">💬</a>
+    <section class="stats-section"><div class="container stats-grid"><div class="stat reveal"><strong>99<span>+</span></strong><small>PageSpeed skoru</small></div><div class="stat reveal"><strong>12<span>+</span></strong><small>Başarılı proje</small></div><div class="stat reveal"><strong>4.9<span>/5</span></strong><small>Müşteri memnuniyeti</small></div><div class="stat reveal"><strong>7<span>/24</span></strong><small>Destek ve bakım</small></div></div></section>
 
-    <script>
-        document.getElementById('hamburger').onclick = () => document.getElementById('navMenu').classList.toggle('active');
-        
-        // Klavye ile hamburger menü kontrolü desteği
-        document.getElementById('hamburger').onkeydown = (e) => { if(e.key === 'Enter' || e.key === ' ') document.getElementById('navMenu').classList.toggle('active'); };
+    <section class="section section-pad pricing-section" id="pricing"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">04 / Paketler</div><h2>Projenize uygun<br /><em>bir başlangıç.</em></h2></div><p>İhtiyacınız net değilse sorun değil. Ücretsiz keşif görüşmesinde birlikte doğru yolu buluruz.</p></div><div class="pricing-grid"><article class="price-card reveal"><span class="price-kicker">Launch</span><h3>Başlangıç</h3><p>Fikrini hızlıca doğrulamak isteyenler için.</p><strong>₺ 29.900<span>+ KDV</span></strong><a href="#contact" class="button button-outline">Paketi incele ↗</a></article><article class="price-card featured reveal"><span class="price-kicker">Most popular</span><h3>Growth</h3><p>Markasını büyütmek ve fark yaratmak isteyenler için.</p><strong>₺ 59.900<span>+ KDV</span></strong><a href="#contact" class="button button-blue">Teklif al ↗</a></article><article class="price-card reveal"><span class="price-kicker">Scale</span><h3>Özel proje</h3><p>Karmaşık ürünler ve ölçeklenebilir sistemler için.</p><strong>Konuşalım<span>birlikte</span></strong><a href="#contact" class="button button-outline">Bize ulaşın ↗</a></article></div></div></section>
 
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.onclick = e => {
-                e.preventDefault();
-                const targetElement = document.querySelector(link.getAttribute('href'));
-                if(targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-                document.getElementById('navMenu').classList.remove('active');
-            };
-        });
-        
-        // WhatsApp Akıllı Yönlendirmeli Form Kontrolü
-        document.getElementById('contactForm').onsubmit = function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button'), original = btn.innerHTML;
-            btn.innerHTML = '⏳ WhatsApp\'a Yönlendiriliyorsunuz...'; 
-            btn.disabled = true;
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').selectedOptions[0].text;
-            const message = document.getElementById('message').value || 'Belirtilmedi';
-            
-            const myText = `🚨 *YENİ RANDEVU TALEBİ* 🚨%0A%0A` +
-                           `👤 *Müşteri:* ${encodeURIComponent(name)}%0A` +
-                           `📞 *Telefon:* ${encodeURIComponent(phone)}%0A` +
-                           `🔧 *Hizmet:* ${encodeURIComponent(service)}%0A` +
-                           `🔍 *Arıza Tanımı:* ${encodeURIComponent(message)}`;
-            
-            const whatsappUrl = `https://wa.me/905013242362?text=${myText}`;
-            
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-                this.reset(); 
-                btn.innerHTML = original; 
-                btn.disabled = false;
-            }, 1000);
-        };
-    </script>
+    <section class="section section-dark section-pad faq-section" id="faq"><div class="container faq-grid"><div class="reveal"><div class="eyebrow">05 / Merak edilenler</div><h2>Henüz aklındaki<br /><em>soru ne?</em></h2></div><div class="faq-list"><details open class="reveal"><summary>Bir proje ne kadar sürede tamamlanır? <span>+</span></summary><p>Projenin kapsamına göre değişir. Ortalama bir kurumsal web projesini 3–5 hafta içinde tamamlıyoruz.</p></details><details class="reveal"><summary>Proje sonrası destek veriyor musunuz? <span>+</span></summary><p>Evet. Yayın sonrası bakım, içerik güncellemeleri ve teknik destek paketleri sunuyoruz.</p></details><details class="reveal"><summary>Mevcut web sitemizi yenileyebilir misiniz? <span>+</span></summary><p>Elbette. Önce mevcut yapıyı analiz ediyor, sonra marka ve iş hedeflerinize göre yeniden tasarlıyoruz.</p></details><details class="reveal"><summary>Ödeme planınız nasıl? <span>+</span></summary><p>Genellikle %50 başlangıç, %50 proje teslimi şeklinde ilerliyoruz. Büyük projelerde esnek plan oluşturabiliriz.</p></details></div></div></section>
+
+    <section class="section contact-section" id="contact"><div class="container contact-box reveal"><div class="contact-copy"><div class="eyebrow">06 / Projenizi anlatalım</div><h2>Bir fikriniz<br />var mı? <em>Konuşalım.</em></h2><p>Formu doldurun; 24 saat içinde size dönüş yapalım.</p><div class="contact-detail"><span>✦</span><div><small>Doğrudan yazın</small><a href="mailto:hello@protech.com.tr">hello@protech.com.tr</a></div></div></div><form id="contactForm" class="contact-form"><label>Adınız soyadınız<input required id="name" name="name" type="text" placeholder="Ad Soyad" /></label><label>E-posta adresiniz<input required id="email" name="email" type="email" placeholder="mail@ornek.com" /></label><label>Proje tipi<select id="service" name="service"><option>Web tasarım & geliştirme</option><option>E-ticaret sistemi</option><option>Web uygulaması / SaaS</option><option>SEO & performans</option></select></label><label>Bütçeniz<select id="budget" name="budget"><option>₺30.000 — ₺60.000</option><option>₺60.000 — ₺120.000</option><option>₺120.000+</option><option>Henüz net değil</option></select></label><label class="full">Projenizden bahsedin<textarea required id="message" name="message" rows="4" placeholder="Ne inşa etmek istiyorsunuz?"></textarea></label><button class="button button-blue full" type="submit">WhatsApp'tan gönder <span>↗</span></button><p class="form-note">Formu göndererek WhatsApp'a yönlendirileceksiniz.</p></form></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-top"><a class="brand" href="#top"><span class="brand-mark"><span></span></span><span>Pro<span>Tech</span></span></a><div class="footer-tagline">Dijitalde iz bırakın.<br /><em>Birlikte.</em></div><div class="footer-links"><a href="#work">Instagram ↗</a><a href="#work">LinkedIn ↗</a><a href="mailto:hello@protech.com.tr">E-posta ↗</a></div></div><div class="container footer-bottom"><span>© 2026 ProTech Studio. Tüm hakları saklıdır.</span><span>Alanya / Türkiye <i>•</i> Dünyaya açık</span></div></footer>
+  <a class="whatsapp" href="https://wa.me/905013242362" target="_blank" rel="noopener" aria-label="WhatsApp ile iletişim"><span>◔</span></a>
+  <script src="script.js"></script>
 </body>
 </html>
