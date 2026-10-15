@@ -44,8 +44,8 @@ form?.addEventListener('submit', (event) => {
     '',
     `Ad: ${formData.get('name')}`,
     `E-posta: ${formData.get('email')}`,
-    `Proje tipi: ${formData.get('service')}`,
-    `Bütçe: ${formData.get('budget')}`,
+    `İşletme türü: ${formData.get('business_type')}`,
+    `İhtiyaç: ${formData.get('need')}`,
     `Detay: ${formData.get('message')}`,
   ].join('\n');
   const submit = form.querySelector('button[type="submit"]');
